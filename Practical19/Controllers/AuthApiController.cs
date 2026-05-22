@@ -14,12 +14,10 @@ public class AuthApiController(IAuthService authService) : ControllerBase
         {
             return Forbid();
         }
-
         if (!ModelState.IsValid)
         {
             return ValidationProblem(ModelState);
         }
-
         var result = await _authService.RegisterAsync(model);
         return result.Success ? Ok(result) : BadRequest(result);
     }
@@ -32,7 +30,6 @@ public class AuthApiController(IAuthService authService) : ControllerBase
         {
             return ValidationProblem(ModelState);
         }
-
         var result = await _authService.LoginAsync(model, false);
         return result.Success ? Ok(result) : Unauthorized(result);
     }

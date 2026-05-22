@@ -21,7 +21,6 @@ public class RolesController(IRoleService roleService) : ControllerBase
         {
             return ValidationProblem(ModelState);
         }
-
         var result = await _roleService.CreateRoleAsync(model);
         return result.Succeeded ? Ok() : BadRequest(result.Errors.Select(error => error.Description));
     }

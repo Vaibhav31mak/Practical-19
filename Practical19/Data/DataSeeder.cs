@@ -6,7 +6,6 @@ public static class DataSeeder
     {
         var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
         var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-
         var roles = new[] { "Admin", "User" };
         foreach (var role in roles)
         {
@@ -15,7 +14,6 @@ public static class DataSeeder
                 await roleManager.CreateAsync(new ApplicationRole { Name = role });
             }
         }
-
         var adminEmail = "admin@gmail.com";
         var adminUser = await userManager.FindByEmailAsync(adminEmail);
         if (adminUser == null)

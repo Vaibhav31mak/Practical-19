@@ -22,7 +22,6 @@ public class UsersController(IUserService userService) : ControllerBase
         {
             return ValidationProblem(ModelState);
         }
-
         var result = await _userService.UpdateCurrentAsync(User, model);
         return result.Succeeded ? NoContent() : BadRequest(result.Errors.Select(error => error.Description));
     }
@@ -51,7 +50,6 @@ public class UsersController(IUserService userService) : ControllerBase
         {
             return ValidationProblem(ModelState);
         }
-
         var result = await _userService.CreateUserAsync(model);
         return result.Succeeded ? Ok() : BadRequest(result.Errors.Select(error => error.Description));
     }
@@ -64,7 +62,6 @@ public class UsersController(IUserService userService) : ControllerBase
         {
             return ValidationProblem(ModelState);
         }
-
         var result = await _userService.UpdateUserAsync(userId, model);
         return result.Succeeded ? NoContent() : BadRequest(result.Errors.Select(error => error.Description));
     }

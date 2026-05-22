@@ -40,7 +40,7 @@ public class AccountController(IAuthService authService) : Controller
             return View(model);
         }
 
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Login", "Account");
     }
 
     [AllowAnonymous]
@@ -67,7 +67,7 @@ public class AccountController(IAuthService authService) : Controller
             return View(model);
         }
 
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Login", "Account");
     }
 
     [Authorize]
@@ -76,7 +76,7 @@ public class AccountController(IAuthService authService) : Controller
     public async Task<IActionResult> Logout()
     {
         await _authService.SignOutAsync();
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Login", "Account");
     }
 
     [HttpGet]
