@@ -1,0 +1,17 @@
+global using System.ComponentModel.DataAnnotations;
+global using System.Diagnostics;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
+global using System.Text;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Options;
+global using Microsoft.IdentityModel.Tokens;
+global using Practical19.Data;
+global using Practical19.Models;
+global using Practical19.Models.ViewModels;
+global using Practical19.Services;
+global using Practical19.Services.Interfaces;
