@@ -1,5 +1,8 @@
 namespace Practical19.Services;
 
+/// <summary>
+/// Provides authentication, registration, and token generation operations.
+/// </summary>
 public class AuthService(
     UserManager<ApplicationUser> userManager,
     SignInManager<ApplicationUser> signInManager,
@@ -12,6 +15,9 @@ public class AuthService(
     private readonly RoleManager<ApplicationRole> _roleManager = roleManager;
     private readonly JwtOptions _jwtOptions = jwtOptions.Value;
 
+    /// <summary>
+    /// Registers a new user and signs them in.
+    /// </summary>
     public async Task<AuthResponse> RegisterAsync(RegisterViewModel model)
     {
         var existingUser = await _userManager.FindByEmailAsync(model.Email);
@@ -57,6 +63,9 @@ public class AuthService(
         };
     }
 
+    /// <summary>
+    /// Validates user credentials and signs in with cookies when requested.
+    /// </summary>
     public async Task<AuthResponse> LoginAsync(LoginViewModel model, bool useCookieSignIn)
     {
         var user = await _userManager.FindByEmailAsync(model.Email);
@@ -73,7 +82,7 @@ public class AuthService(
             var signInResult = await _signInManager.PasswordSignInAsync(
                 user,
                 model.Password,
-                model.RememberMe,
+                false,
                 lockoutOnFailure: false);
 
             if (!signInResult.Succeeded)
@@ -106,8 +115,14 @@ public class AuthService(
         };
     }
 
+    /// <summary>
+    /// Signs the current user out.
+    /// </summary>
     public Task SignOutAsync() => _signInManager.SignOutAsync();
 
+    /// <summary>
+    /// Creates a JWT token for the specified user.
+    /// </summary>
     private async Task<string> CreateJwtTokenAsync(ApplicationUser user)
     {
         var roles = await _userManager.GetRolesAsync(user);
